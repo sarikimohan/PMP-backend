@@ -1,0 +1,8 @@
+{
+  "watch": ["users","auth"],
+  "ext": "js,json,ts",
+  "ignore": ["src/tests"],
+  "env": {
+    "NODE_ENV": "development"
+  }
+}
