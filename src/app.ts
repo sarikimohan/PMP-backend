@@ -1,3 +1,9 @@
+import dotenv from 'dotenv';
+// if(process.env.DEBUG){
+const dotenvResult = dotenv.config();
+if (dotenvResult.error) {
+    //throw dotenvResult.error;
+}
 import express from 'express';
 import * as http from 'http';
 
@@ -5,14 +11,14 @@ import * as winston from 'winston';
 import * as expressWinston from 'express-winston';
 import cors from 'cors';
 import {CommonRoutesConfig} from './common/commonRoutesConfig';
-import {UsersRoutes} from '../src/users/users.routes.config';
+import {UsersRoutes} from './users/userRoutesConfig';
 import debug from 'debug';
 import mongoose from 'mongoose';
 import { AuthRoutes } from './auth/authRoutesConfig';
 import { BlogsRoutes } from './blogs/blogsRoutesConfig';
 
 
-require('dotenv').config()
+
 
 
 const app: express.Application = express();

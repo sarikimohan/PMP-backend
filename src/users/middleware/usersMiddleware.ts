@@ -2,7 +2,7 @@ import express from "express";
 import userService from "../services/users.service";
 import debug from "debug";
 
-const log: debug.IDebugger = debug("app:users-controller");
+const debugLog: debug.IDebugger = debug("usersMiddleware: ");
 class UsersMiddleware {
   async validateRequiredUserBodyFields(
     req: express.Request,
@@ -51,7 +51,7 @@ class UsersMiddleware {
     next: express.NextFunction
   ) => {
     if (req.body.email) {
-      log("Validating email", req.body.email);
+      debugLog("Validating email", req.body.email);
 
       this.validateSameEmailBelongToSameUser(req, res, next);
     } else {

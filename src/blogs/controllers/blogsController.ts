@@ -1,40 +1,46 @@
-import express from 'express'
-import blogsDao from '../daos/blogsDao'
-import blogsService from '../services/blogsService'
-import jwt from 'jsonwebtoken'
+import express from "express";
+import blogsDao from "../daos/blogsDao";
+import blogsService from "../services/blogsService";
+import jwt from "jsonwebtoken";
+import debug from "debug";
 
-class BlogsController{
-  async createBlog(req:express.Request,res:express.Response){
+const debugLog: debug.IDebugger = debug("blogsController: ");
 
-    const userId= res.locals.userId
-    const images = req.files as {[fieldname: string]: Express.Multer.File[]}
+class BlogsController {
+  async createBlog(req: express.Request, res: express.Response) {
+    const userId = res.locals.userId;
+    const images = req.files as { [fieldname: string]: Express.Multer.File[] };
 
     // debugLog("fileData:",images.imageOne)
-    await blogsService.Create(req.body,userId.userId,req)
-    res.sendStatus(200)
+    await blogsService.Create(req.body, userId.userId, req);
+    res.sendStatus(200);
   }
 
-  async deleteBlog(req:express.Request,res:express.Response){
-    await blogsService.delete(req.body.blogId)
-    res.sendStatus(200)
+  async deleteBlog(req: express.Request, res: express.Response) {
+    await blogsService.delete(req.body.blogId);
+    res.sendStatus(200);
   }
 
-  async getBlogs(req:express.Request,res:express.Response){
-    const blogs = await blogsService.get(res.locals.userId.userId)
-    res.setHeader('Content-Type', 'application/json')
-    res.status(200).send(blogs)
+  async getBlogs(req: express.Request, res: express.Response) {
+    const blogs = await blogsService.get(res.locals.userId.userId);
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).send(blogs);
   }
 
-  async updateBlog(req:express.Request,res:express.Response){
-    await blogsService.update(req)
-    res.status(200).send()
+  async updateBlog(req: express.Request, res: express.Response) {
+    await blogsService.update(req);
+    res.status(200).send();
   }
 
-  async getAllBlogs(req:express.Request,res:express.Response){
-    const blogs = await blogsService.getAllBlogs()
-    res.setHeader('Content-Type', 'application/json')
-    res.status(200).send(blogs)
+  async getAllBlogs(req: express.Request, res: express.Response) {
+    const blogs = await blogsService.getAllBlogs();
+    // debugLog(blogs)
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).send({
+      status:"success",
+      blogs,
+    });
   }
 }
 
-export default new BlogsController
+export default new BlogsController();

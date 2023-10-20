@@ -1,8 +1,10 @@
+import debug from "debug";
 import blogsDao from "../daos/blogsDao";
 import BlogsDao from "../daos/blogsDao";
 import { CreateBlogDto, UpdateBlogDto } from "../dto/blogsDto";
 import express from 'express'
 
+const debugLog : debug.IDebugger = debug('blogsService: ')
 class BlogsService{
   async Create(resource: CreateBlogDto,UserId:string,req:express.Request){
     BlogsDao.addBlog(resource,UserId,req)

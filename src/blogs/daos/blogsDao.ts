@@ -1,8 +1,10 @@
-import Blogs from "../../../database/entities/Blogs";
-import BlogsModel from "../../../database/models/BlogsModel";
+import debug from "debug";
+import Blogs from "../../database/entities/Blogs";
+import BlogsModel from "../../database/models/BlogsModel";
 import { CreateBlogDto, UpdateBlogDto } from "../dto/blogsDto";
 import express from "express";
 
+const debugLog : debug.IDebugger = debug('blogsDao: ')
 class BlogsDao {
   async addBlog(blog: CreateBlogDto, userId: string, req: express.Request) {
     // debugLog("blog:",blog)

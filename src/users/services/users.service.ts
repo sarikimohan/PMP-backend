@@ -1,8 +1,8 @@
 import UsersDao from '../daos/usersDao';
 import { CRUD } from '../../common/interfaces/crudInterfaces'
-import { CreateUserDto } from '../dto/create.user.dto';
-import { PutUserDto } from '../dto/put.user.dto';
-import { PatchUserDto } from '../dto/patch.user.dto';
+import { CreateUserDto } from '../dto/createUserDto';
+import { PutUserDto } from '../dto/putUserDto';
+import { PatchUserDto } from '../dto/patchUserDto';
 
 class UsersService {
     async create(resource: CreateUserDto) {

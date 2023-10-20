@@ -1,10 +1,12 @@
 import { CommonRoutesConfig } from "../common/commonRoutesConfig";
 import UsersController from "./controllers/usersController";
-import UsersMiddleware from "./middleware/users.middleware";
+import UsersMiddleware from "./middleware/usersMiddleware";
 import BodyValidationMiddleware from "../common/middleware/bodyValidationMiddleware";
 import { body } from "express-validator";
 import express from "express";
+import debug from "debug";
 
+const debugLog : debug.IDebugger = debug('userRoutesConfig: ')
 
 export class UsersRoutes extends CommonRoutesConfig {
   constructor(app: express.Application) {

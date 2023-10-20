@@ -1,6 +1,6 @@
-import { CreateUserDto } from "../dto/create.user.dto";
-import { PatchUserDto } from "../dto/patch.user.dto";
-import { PutUserDto } from "../dto/put.user.dto";
+import { CreateUserDto } from "../dto/createUserDto";
+import { PatchUserDto } from "../dto/patchUserDto";
+import { PutUserDto } from "../dto/putUserDto";
 import mongooseService from "../../common/services/mongooseService";
 import shortid from "shortid";
 import debug from "debug";
@@ -8,12 +8,12 @@ import mongoose from "mongoose";
 import UsersModel from "../../database/models/UsersModel";
 import UserProfileModel from "../../database/models/UserProfileModel";
 
-const log: debug.IDebugger = debug("app:in-memory-dao");
+const debugLog: debug.IDebugger = debug("UsersDao: ");
 
 class UsersDao {
  
   constructor() {
-    log("Created new instance of UsersDao");
+    debugLog("Created new instance of UsersDao");
   }
 
   async addUser(User: CreateUserDto) {

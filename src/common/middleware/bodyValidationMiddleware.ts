@@ -1,6 +1,8 @@
+import debug from 'debug';
 import express from 'express';
 import { validationResult } from 'express-validator';
 
+const debugLog : debug.IDebugger = debug('bodyValidationMiddleware: ')
 class BodyValidationMiddleware {
     verifyBodyFieldsErrors(
         req: express.Request,

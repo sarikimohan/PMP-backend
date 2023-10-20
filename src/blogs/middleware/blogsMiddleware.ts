@@ -1,7 +1,10 @@
+require("dotenv").config();
+import debug from "debug";
 import express from "express";
 import jwt from "jsonwebtoken";
 
-require("dotenv").config();
+const debugLog: debug.IDebugger = debug("blogsMiddleware: ");
+
 // @ts-expect-error
 const jwtSecret: string = process.env.JWT_SEC;
 
@@ -13,9 +16,9 @@ class BlogsMiddleware {
   ) {
     if (req.headers["authorization"]) {
       try {
-        const authorization = req.headers["authorization"].split(' ');
-        debugLog(authorization)
-        debugLog("Chexk: ",authorization[1])
+        const authorization = req.headers["authorization"].split(" ");
+        debugLog(authorization);
+        debugLog("Chexk: ", authorization[1]);
         if (authorization[0] !== "Bearer") {
           return res.status(401).send();
         } else {
@@ -25,7 +28,10 @@ class BlogsMiddleware {
         }
       } catch (err) {
         debugLog("return err", err);
-        return res.status(403).send(err);
+        return res.status(403).send({
+          status: "failed",
+          error: "invalid token"
+        });
       }
     } else {
       return res.status(401).send();
@@ -33,4 +39,4 @@ class BlogsMiddleware {
   }
 }
 
-export default new BlogsMiddleware
+export default new BlogsMiddleware();

@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 
 require('dotenv').config()
-const log: debug.IDebugger = debug('app:auth-controller');
+const log: debug.IDebugger = debug('authController: ');
 
 /**
 * This value is automatically populated from .env, a file which you will have

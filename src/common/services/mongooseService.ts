@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import debug from 'debug';
 
-const log: debug.IDebugger = debug('app:mongoose-service');
+const log: debug.IDebugger = debug('amongooseService: ');
 
 class MongooseService {
     private count = 0;

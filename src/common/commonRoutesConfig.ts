@@ -1,5 +1,8 @@
+import debug from "debug"
 import  express, { application }  from "express"
 
+
+const debugLog : debug.IDebugger = debug('commonRoutesConfig: ')
 export abstract class CommonRoutesConfig{
   app: express.Application
   name:string

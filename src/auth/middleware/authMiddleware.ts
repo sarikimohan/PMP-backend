@@ -1,7 +1,9 @@
 import express from "express";
 import usersService from "../../users/services/users.service";
 import * as argon2 from "argon2";
+import debug from "debug";
 
+const debugLog : debug.IDebugger = debug('authMiddleWare: ')
 class AuthMiddleWare {
 
   async verifyUserPassword(

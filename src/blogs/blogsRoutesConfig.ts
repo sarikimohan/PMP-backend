@@ -1,9 +1,12 @@
-import { CommonRoutesConfig } from "../../common/commonRoutesConfig";
+import { CommonRoutesConfig } from "../common/commonRoutesConfig";
 import express from "express";
 import blogsController from "./controllers/blogsController";
 import blogsMiddleware from "./middleware/blogsMiddleware";
 import multer from "multer";
 import blogsVerifyUser from "./middleware/blogsVerifyUser";
+import debug from "debug";
+
+const debugLog : debug.IDebugger = debug('blogsRoutesConfig: ')
 
 const storage = multer.memoryStorage()
 const upload = multer({storage:storage});
