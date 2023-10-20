@@ -4,3 +4,9 @@ export interface CreateBlogDto{
   imageOne:string,
   imageTwo:string,
 }
+
+export interface UpdateBlogDto{
+  blogId:string,
+  title?:string,
+  description?:string
+}

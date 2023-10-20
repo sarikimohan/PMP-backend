@@ -18,12 +18,37 @@ class BlogsController {
         return __awaiter(this, void 0, void 0, function* () {
             const userId = res.locals.userId;
             const images = req.files;
-            console.log(images);
-            console.log("fileData:", images[0].buffer);
+            // console.log("fileData:",images.imageOne)
             yield blogs_service_1.default.Create(req.body, userId.userId, req);
             res.sendStatus(200);
         });
     }
+    deleteBlog(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield blogs_service_1.default.delete(req.body.blogId);
+            res.sendStatus(200);
+        });
+    }
+    getBlogs(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const blogs = yield blogs_service_1.default.get(res.locals.userId.userId);
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send(blogs);
+        });
+    }
+    updateBlog(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield blogs_service_1.default.update(req);
+            res.status(200).send();
+        });
+    }
+    getAllBlogs(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const blogs = yield blogs_service_1.default.getAllBlogs();
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send(blogs);
+        });
+    }
 }
 exports.default = new BlogsController;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYmxvZ3MuY29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3NyYy9lbmRwb2ludHMvYmxvZ3MvY29udHJvbGxlcnMvYmxvZ3MuY29udHJvbGxlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7OztBQUVBLDhFQUFvRDtBQUVwRCxNQUFNLGVBQWU7SUFDYixVQUFVLENBQUMsR0FBbUIsRUFBQyxHQUFvQjs7WUFFdkQsTUFBTSxNQUFNLEdBQUUsR0FBRyxDQUFDLE1BQU0sQ0FBQyxNQUFNLENBQUE7WUFDL0IsTUFBTSxNQUFNLEdBQUcsR0FBRyxDQUFDLEtBQThCLENBQUE7WUFDakQsT0FBTyxDQUFDLEdBQUcsQ0FBQyxNQUFNLENBQUMsQ0FBQTtZQUNuQixPQUFPLENBQUMsR0FBRyxDQUFDLFdBQVcsRUFBQyxNQUFNLENBQUMsQ0FBQyxDQUFDLENBQUMsTUFBTSxDQUFDLENBQUE7WUFDekMsTUFBTSx1QkFBWSxDQUFDLE1BQU0sQ0FBQyxHQUFHLENBQUMsSUFBSSxFQUFDLE1BQU0sQ0FBQyxNQUFNLEVBQUMsR0FBRyxDQUFDLENBQUE7WUFDckQsR0FBRyxDQUFDLFVBQVUsQ0FBQyxHQUFHLENBQUMsQ0FBQTtRQUNyQixDQUFDO0tBQUE7Q0FDRjtBQUVELGtCQUFlLElBQUksZUFBZSxDQUFBIn0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYmxvZ3MuY29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3NyYy9lbmRwb2ludHMvYmxvZ3MvY29udHJvbGxlcnMvYmxvZ3MuY29udHJvbGxlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7OztBQUVBLDhFQUFvRDtBQUdwRCxNQUFNLGVBQWU7SUFDYixVQUFVLENBQUMsR0FBbUIsRUFBQyxHQUFvQjs7WUFFdkQsTUFBTSxNQUFNLEdBQUUsR0FBRyxDQUFDLE1BQU0sQ0FBQyxNQUFNLENBQUE7WUFDL0IsTUFBTSxNQUFNLEdBQUcsR0FBRyxDQUFDLEtBQXFELENBQUE7WUFFeEUsMkNBQTJDO1lBQzNDLE1BQU0sdUJBQVksQ0FBQyxNQUFNLENBQUMsR0FBRyxDQUFDLElBQUksRUFBQyxNQUFNLENBQUMsTUFBTSxFQUFDLEdBQUcsQ0FBQyxDQUFBO1lBQ3JELEdBQUcsQ0FBQyxVQUFVLENBQUMsR0FBRyxDQUFDLENBQUE7UUFDckIsQ0FBQztLQUFBO0lBRUssVUFBVSxDQUFDLEdBQW1CLEVBQUMsR0FBb0I7O1lBQ3ZELE1BQU0sdUJBQVksQ0FBQyxNQUFNLENBQUMsR0FBRyxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsQ0FBQTtZQUMxQyxHQUFHLENBQUMsVUFBVSxDQUFDLEdBQUcsQ0FBQyxDQUFBO1FBQ3JCLENBQUM7S0FBQTtJQUVLLFFBQVEsQ0FBQyxHQUFtQixFQUFDLEdBQW9COztZQUNyRCxNQUFNLEtBQUssR0FBRyxNQUFNLHVCQUFZLENBQUMsR0FBRyxDQUFDLEdBQUcsQ0FBQyxNQUFNLENBQUMsTUFBTSxDQUFDLE1BQU0sQ0FBQyxDQUFBO1lBQzlELEdBQUcsQ0FBQyxTQUFTLENBQUMsY0FBYyxFQUFFLGtCQUFrQixDQUFDLENBQUE7WUFDakQsR0FBRyxDQUFDLE1BQU0sQ0FBQyxHQUFHLENBQUMsQ0FBQyxJQUFJLENBQUMsS0FBSyxDQUFDLENBQUE7UUFDN0IsQ0FBQztLQUFBO0lBRUssVUFBVSxDQUFDLEdBQW1CLEVBQUMsR0FBb0I7O1lBQ3ZELE1BQU0sdUJBQVksQ0FBQyxNQUFNLENBQUMsR0FBRyxDQUFDLENBQUE7WUFDOUIsR0FBRyxDQUFDLE1BQU0sQ0FBQyxHQUFHLENBQUMsQ0FBQyxJQUFJLEVBQUUsQ0FBQTtRQUN4QixDQUFDO0tBQUE7SUFFSyxXQUFXLENBQUMsR0FBbUIsRUFBQyxHQUFvQjs7WUFDeEQsTUFBTSxLQUFLLEdBQUcsTUFBTSx1QkFBWSxDQUFDLFdBQVcsRUFBRSxDQUFBO1lBQzlDLEdBQUcsQ0FBQyxTQUFTLENBQUMsY0FBYyxFQUFFLGtCQUFrQixDQUFDLENBQUE7WUFDakQsR0FBRyxDQUFDLE1BQU0sQ0FBQyxHQUFHLENBQUMsQ0FBQyxJQUFJLENBQUMsS0FBSyxDQUFDLENBQUE7UUFDN0IsQ0FBQztLQUFBO0NBQ0Y7QUFFRCxrQkFBZSxJQUFJLGVBQWUsQ0FBQSJ9

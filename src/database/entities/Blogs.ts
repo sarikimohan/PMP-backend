@@ -7,12 +7,12 @@ export default interface Blogs{
   title:string,
   description:string,
   imageOneURI:{
-    data: Buffer,
-    contentType:string
+    data: Buffer|null,
+    contentType:string|null
   },
-  imageTwoURI?:{
-    data: Buffer,
-    contentType:string
+  imageTwoURI:{
+    data: Buffer|null,
+    contentType:string|null
   },
   publishTime:Date
 }
