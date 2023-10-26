@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 const debugLog: debug.IDebugger = debug("blogsMiddleware: ");
 
-// @ts-expect-error
+
 const jwtSecret: string = process.env.JWT_SEC;
 
 class BlogsMiddleware {

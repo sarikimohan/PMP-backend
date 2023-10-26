@@ -14,7 +14,7 @@ const log: debug.IDebugger = debug('authController: ');
 */
 
 const debugLog : debug.IDebugger = debug('authController: ')
-// @ts-expect-error
+
 const jwtSecret: string = process.env.JWT_SEC;
 const tokenExpirationInSeconds = 36000;
 

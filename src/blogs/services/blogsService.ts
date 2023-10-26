@@ -1,7 +1,7 @@
 import debug from "debug";
-import blogsDao from "../daos/blogsDao";
-import BlogsDao from "../daos/blogsDao";
-import { CreateBlogDto, UpdateBlogDto } from "../dto/blogsDto";
+import blogsDao from "../daos/blogsDao.js";
+import BlogsDao from "../daos/blogsDao.js";
+import { CreateBlogDto, UpdateBlogDto } from "../dto/blogsDto.js";
 import express from 'express'
 
 const debugLog : debug.IDebugger = debug('blogsService: ')

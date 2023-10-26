@@ -1,8 +1,8 @@
-import UsersDao from '../daos/usersDao';
-import { CRUD } from '../../common/interfaces/crudInterfaces'
-import { CreateUserDto } from '../dto/createUserDto';
-import { PutUserDto } from '../dto/putUserDto';
-import { PatchUserDto } from '../dto/patchUserDto';
+import UsersDao from '../daos/usersDao.js';
+import { CRUD } from '../../common/interfaces/crudInterfaces.js'
+import { CreateUserDto } from '../dto/createUserDto.js';
+import { PutUserDto } from '../dto/putUserDto.js';
+import { PatchUserDto } from '../dto/patchUserDto.js';
 
 class UsersService {
     async create(resource: CreateUserDto) {

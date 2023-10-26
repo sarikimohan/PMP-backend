@@ -1,14 +1,14 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
-import { Jwt } from '../../common/types/jwt';
-import usersService from '../../users/services/users.service';
+import { Jwt } from '../../common/types/jwt.js';
+import usersService from '../../users/services/users.service.js';
 import debug from 'debug';
 
 require('dotenv').config()
 const debugLog : debug.IDebugger = debug('jwtMiddleWare: ')
 
-// @ts-expect-error
+
 const jwtSecret: string = process.env.JWT_SEC;
 
 class JwtMiddleware {

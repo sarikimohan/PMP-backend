@@ -1,7 +1,7 @@
 import debug from "debug";
-import Blogs from "../../database/entities/Blogs";
-import BlogsModel from "../../database/models/BlogsModel";
-import { CreateBlogDto, UpdateBlogDto } from "../dto/blogsDto";
+import Blogs from "../../database/entities/Blogs.js";
+import BlogsModel from "../../database/models/BlogsModel.js";
+import { CreateBlogDto, UpdateBlogDto } from "../dto/blogsDto.js";
 import express from "express";
 
 const debugLog : debug.IDebugger = debug('blogsDao: ')

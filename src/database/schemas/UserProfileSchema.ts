@@ -1,39 +1,30 @@
 import { Schema } from "mongoose";
-import UserProfile from "../entities/UserProfile";
+import UserProfile from "../entities/UserProfile.js";
 
 const UserProfileSchema = new Schema<UserProfile>({
-  serialNo:{
-    type:Number,
-    required:true,
-    trim:true,
+  userId: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    unique:true
   },
-  userId:{
-    type:Schema.Types.ObjectId,
-    required:true,
+  profileName: {
+    type: String,
+    trim: true,
+    default: "User101",
   },
-  profileName:{
-    type:String,
-    required:true,
-    trim:true,
-    default:"User101"
+  profilePicUri: {
+    type: String,
   },
-  profilePicUri:{
-    type:String,
-  }, 
-  aboutMe:{
-    type:String,
-    trim:true
+  aboutMe: {
+    type: String,
+    trim: true,
   },
-  typeOfProfile:{
-    type:String,
-    required:true,
-    enum:[
-      "PMPADMIN",
-      "TEACHER",
-      "STUDENT"
-    ],
-    default:"STUDENT"
-  }
-})
+  typeOfProfile: {
+    type: String,
+    required: true,
+    enum: ["PMPADMIN", "TEACHER", "STUDENT"],
+    default: "STUDENT",
+  },
+});
 
-export default UserProfileSchema
+export default UserProfileSchema;

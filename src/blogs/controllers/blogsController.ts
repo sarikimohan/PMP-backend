@@ -1,6 +1,6 @@
 import express from "express";
-import blogsDao from "../daos/blogsDao";
-import blogsService from "../services/blogsService";
+import blogsDao from "../daos/blogsDao.js";
+import blogsService from "../services/blogsService.js";
 import jwt from "jsonwebtoken";
 import debug from "debug";
 

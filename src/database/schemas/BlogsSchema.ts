@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import Blogs from "../entities/Blogs";
+import Blogs from "../entities/Blogs.js";
 
 const BlogsSchema = new Schema<Blogs>({
   userId: {

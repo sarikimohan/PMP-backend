@@ -1,9 +1,9 @@
-import { CommonRoutesConfig } from "../common/commonRoutesConfig";
+import { CommonRoutesConfig } from "../common/commonRoutesConfig.js";
 import express from "express";
-import blogsController from "./controllers/blogsController";
-import blogsMiddleware from "./middleware/blogsMiddleware";
+import blogsController from "./controllers/blogsController.js";
+import blogsMiddleware from "./middleware/blogsMiddleware.js";
 import multer from "multer";
-import blogsVerifyUser from "./middleware/blogsVerifyUser";
+import blogsVerifyUser from "./middleware/blogsVerifyUser.js";
 import debug from "debug";
 
 const debugLog : debug.IDebugger = debug('blogsRoutesConfig: ')

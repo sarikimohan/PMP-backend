@@ -1,10 +1,10 @@
-import { CommonRoutesConfig } from '../common/commonRoutesConfig';
-import authController from './controllers/authController';
-import authMiddleware from './middleware/authMiddleware';
+import { CommonRoutesConfig } from '../common/commonRoutesConfig.js';
+import authController from './controllers/authController.js';
+import authMiddleware from './middleware/authMiddleware.js';
 import express from 'express';
-import BodyValidationMiddleware from '../common/middleware/bodyValidationMiddleware';
+import BodyValidationMiddleware from '../common/middleware/bodyValidationMiddleware.js';
 import { body } from 'express-validator';
-import jwtMiddleware from './middleware/jwtMiddleware';
+import jwtMiddleware from './middleware/jwtMiddleware.js';
 import debug from 'debug';
 
 const debugLog : debug.IDebugger = debug('authRoutesConfig : ')

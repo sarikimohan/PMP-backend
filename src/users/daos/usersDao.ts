@@ -1,12 +1,12 @@
-import { CreateUserDto } from "../dto/createUserDto";
-import { PatchUserDto } from "../dto/patchUserDto";
-import { PutUserDto } from "../dto/putUserDto";
-import mongooseService from "../../common/services/mongooseService";
+import { CreateUserDto } from "../dto/createUserDto.js";
+import { PatchUserDto } from "../dto/patchUserDto.js";
+import { PutUserDto } from "../dto/putUserDto.js";
+import mongooseService from "../../common/services/mongooseService.js";
 import shortid from "shortid";
 import debug from "debug";
 import mongoose from "mongoose";
-import UsersModel from "../../database/models/UsersModel";
-import UserProfileModel from "../../database/models/UserProfileModel";
+import UsersModel from "../../database/models/UsersModel.js";
+import UserProfileModel from "../../database/models/UserProfileModel.js";
 
 const debugLog: debug.IDebugger = debug("UsersDao: ");
 

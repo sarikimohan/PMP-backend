@@ -1,6 +1,6 @@
 import express from 'express'
 import jwt from 'jsonwebtoken'
-import BlogsModel from '../../database/models/BlogsModel'
+import BlogsModel from '../../database/models/BlogsModel.js'
 import debug from 'debug'
 
 
