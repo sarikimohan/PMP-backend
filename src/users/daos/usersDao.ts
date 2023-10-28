@@ -45,7 +45,7 @@ class UsersDao {
   }
 
   async getUserByEmailWithPassword(email: string) {
-    return await UsersModel.findOne({ email: email }).select({email:1,password:1})
+    return await UsersModel.findOne({ email: email }).select({_id:1,email:1,password:1})
         
 }
 

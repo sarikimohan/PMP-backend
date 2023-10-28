@@ -89,8 +89,8 @@ const mongooseDB = await mongoose
   .connect(
     process.env.DATABASE_STRING
   )
-  .then(() => console.log("database connected"))
-  .catch((err) => console.log(err));
+  .then(() => debugLog("database connected"))
+  .catch((err) => debugLog(err));
 
 const BookResourceOptions = {
   databases: [mongooseDB],

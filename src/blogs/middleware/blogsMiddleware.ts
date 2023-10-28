@@ -1,4 +1,8 @@
-require("dotenv").config();
+import dotenv from 'dotenv'
+const dotenvResult = dotenv.config();
+if (dotenvResult.error) {
+  throw dotenvResult.error;
+}
 import debug from "debug";
 import express from "express";
 import jwt from "jsonwebtoken";
