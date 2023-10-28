@@ -22,7 +22,7 @@ class BlogsController {
   }
 
   async getBlogs(req: express.Request, res: express.Response) {
-    const blogs = await blogsService.get(res.locals.userId.userId);
+    const blogs = await blogsService.get(res.locals.userId.userId,req.body.blogId);
     res.setHeader("Content-Type", "application/json");
     res.status(200).send(blogs);
   }

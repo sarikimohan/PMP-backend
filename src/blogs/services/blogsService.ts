@@ -14,8 +14,8 @@ class BlogsService{
     BlogsDao.deleteBlog(blogId)
   }
 
-  async get(userId:string){
-    const blogs = await BlogsDao.getBlogs(userId)
+  async get(userId:string,blogId:string){
+    const blogs = await BlogsDao.getBlogs(userId,blogId)
     return blogs
   }
 

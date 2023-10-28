@@ -65,9 +65,9 @@ class BlogsDao {
     return;
   }
 
-  async getBlogs(userId: string) {
+  async getBlogs(userId: string,blogId:string) {
     debugLog("userId", userId);
-    const blogs = await BlogsModel.find({ userId: userId });
+    const blogs = await BlogsModel.find({ userId: userId,_id:{$gt:blogId} }).limit(5);
 
     const result = blogs.map((v) => {
       return {
@@ -92,7 +92,7 @@ class BlogsDao {
               }`,
       };
     });
-    // debugLog(blogs)
+    debugLog(result.length)
     return result;
   }
 
