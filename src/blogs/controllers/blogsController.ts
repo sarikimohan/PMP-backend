@@ -33,7 +33,7 @@ class BlogsController {
   }
 
   async getAllBlogs(req: express.Request, res: express.Response) {
-    const blogs = await blogsService.getAllBlogs();
+    const blogs = await blogsService.getAllBlogs(req.body.blogId);
     // debugLog(blogs)
     res.setHeader("Content-Type", "application/json");
     res.status(200).send({

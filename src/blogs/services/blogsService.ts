@@ -23,8 +23,8 @@ class BlogsService{
     BlogsDao.updateBlog(req)
   }
 
-  async getAllBlogs(){
-    const blogs = BlogsDao.getAllBlogs()
+  async getAllBlogs(blogId?:string){
+    const blogs = BlogsDao.getAllBlogs(blogId)
     return blogs
   }
 }

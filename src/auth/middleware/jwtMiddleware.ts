@@ -36,39 +36,39 @@ class JwtMiddleware {
     res: express.Response,
     next: express.NextFunction
   ) {
-    const requestRefreshToken = req.body.refreshToken
-    if(!requestRefreshToken)throw new Error("refresh token undefinded")
-    debugLog(requestRefreshToken)
-    const jwtRefresh = jwt.verify(requestRefreshToken, jwtSecret) as Jwt;
-    const user = await UsersModel.findOne({ _id: jwtRefresh.userId });
+    const requestRefreshToken = req.body.refreshToken;
+    if (!requestRefreshToken) res.status(403).send();
+    debugLog(requestRefreshToken);
 
-    if (user) {
-      req.body = {
-        userId: user._id,
-        email: user.email,
-        permissionFlags: 1,
-      };
-      const arrayOfRefreshTokens = await RefreshTokensModel.find();
-      if (!arrayOfRefreshTokens) {
-        throw new Error("array of Refresh tokens not found");
-      } else {
-        let tokens = arrayOfRefreshTokens[0];
-        debugLog(tokens.refreshTokens)
-        debugLog(requestRefreshToken)
-        if(!tokens.refreshTokens.includes(requestRefreshToken))return res.status(403).send("token invalid or doesnt not exist")
-        if (!tokens) {
-          throw new Error("tokens not found");
-        }
-        tokens.refreshTokens= tokens.refreshTokens.filter(v=>
-          v!==requestRefreshToken
-        )
-        await tokens.save();
-        debugLog("refresh token deleted from the database");
-      }
-      return next();
+    const arrayOfRefreshTokenDocs = await RefreshTokensModel.find();
+    if (!arrayOfRefreshTokenDocs) {
+      res.status(403).send();
     } else {
-      return res.status(400).send({ errors: ["Invalid refresh token"] });
+      let tokens = arrayOfRefreshTokenDocs[0];
+      debugLog(tokens.refreshTokens);
+      debugLog(requestRefreshToken);
+      if (!tokens || !tokens.refreshTokens.includes(requestRefreshToken))
+        return res.status(403).send("token invalid or doesnt not exist");
+      tokens.refreshTokens = tokens.refreshTokens.filter(
+        (v) => v !== requestRefreshToken
+      );
+      await tokens.save();
+      debugLog("refresh token deleted from the database");
+      try {
+        const jwtRefresh = jwt.verify(requestRefreshToken, jwtSecret) as Jwt;
+        const user = await UsersModel.findOne({ _id: jwtRefresh.userId });
+        req.body = {
+          userId: user._id,
+          email: user.email,
+          permissionFlags: 1,
+        };
+        return next();
+      } catch (err) {
+        res.status(403).send({status:"failed",error:"invalid token"})
+      }
     }
+
+   
   }
 
   validJWTNeeded(

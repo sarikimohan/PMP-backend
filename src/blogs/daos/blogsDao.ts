@@ -65,9 +65,15 @@ class BlogsDao {
     return;
   }
 
-  async getBlogs(userId: string,blogId:string) {
+  async getBlogs(userId: string,blogId?:string) {
+    let blogs
     debugLog("userId", userId);
-    const blogs = await BlogsModel.find({ userId: userId,_id:{$gt:blogId} }).limit(5);
+    if(blogId==undefined||blogId==null){
+      blogs = await BlogsModel.find().sort({_id:-1}).limit(5)
+    }else{
+      blogs = (await BlogsModel.find({ userId: userId,_id:{$lt:blogId} }).limit(5)).reverse();
+    }
+  
 
     const result = blogs.map((v) => {
       return {
@@ -96,8 +102,14 @@ class BlogsDao {
     return result;
   }
 
-  async getAllBlogs(){
-    const blogs = (await BlogsModel.find()).reverse()
+  async getAllBlogs(blogId?:string){
+    let blogs
+    if(!blogId||blogId==null){
+      blogs = await BlogsModel.find().sort({_id:-1}).limit(5)
+    }else{
+      blogs = (await BlogsModel.find({_id:{$lt:blogId}}).limit(5)).reverse()
+    }
+    debugLog("blogs:",blogs)
     const result = blogs.map((v) => {
       return {
         _id: v._id,
