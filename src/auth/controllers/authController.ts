@@ -77,6 +77,7 @@ class AuthController {
       );
       await tokens.save();
       debugLog("refresh token deleted from the database");
+      return res.status(200).send()
     }
   }
 }
